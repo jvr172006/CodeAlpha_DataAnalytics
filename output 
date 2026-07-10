@@ -1,0 +1,45 @@
+git init
+
+git add .
+
+git commit -m "Web Scraping Project"
+
+git branch -M main
+
+git remote add origin https://github.com/jvr172006/CodeAlpha_DataAnalytics.git
+
+git push -u origin main
+
+
+
+
+
+
+survival_count.png
+gender_distribution.png
+passenger_class.png
+age_distribution.png
+fare_distribution.png
+age_vs_class.png
+correlation_heatmap.png
+survival_gender.png
+survival_class.png
+
+chart1_survival_count.png
+chart2_gender_distribution.png
+chart3_passenger_class.png
+chart4_age_distribution.png
+chart5_fare_distribution.png
+chart6_survival_gender.png
+chart7_survival_class.png
+chart8_gender_pie.png
+chart9_scatter.png
+chart10_boxplot.png
+chart11_heatmap.png
+chart12_line.png
+
+
+Sentiment_Output.csv
+Sentiment_BarChart.png
+Sentiment_PieChart.png
+WordCloud.png
