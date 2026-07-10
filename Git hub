@@ -1,0 +1,11 @@
+git init
+
+git add .
+
+git commit -m "Web Scraping Project"
+
+git branch -M main
+
+git remote add origin https://github.com/jvr172006/CodeAlpha_DataAnalytics.git
+
+git push -u origin main
