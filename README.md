@@ -96,3 +96,43 @@ python visualization.py
 ## Output
 
 The program generates and saves 12 chart images in PNG format.
+
+# CodeAlpha - Sentiment Analysis
+
+## Objective
+
+Analyze Amazon product reviews and classify them into:
+
+- Positive
+- Negative
+- Neutral
+
+## Technologies Used
+
+- Python
+- Pandas
+- NLTK
+- VADER
+- Matplotlib
+- Seaborn
+- WordCloud
+
+## Files
+
+- Reviews.csv
+- sentiment_analysis.py
+- Sentiment_Output.csv
+
+## Output
+
+- Sentiment Distribution
+- Pie Chart
+- Word Cloud
+- CSV with Sentiment Labels
+
+## Run
+
+```bash
+pip install -r requirements.txt
+python sentiment_analysis.py
+```
