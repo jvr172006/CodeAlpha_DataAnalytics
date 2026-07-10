@@ -9,3 +9,18 @@ git branch -M main
 git remote add origin https://github.com/jvr172006/CodeAlpha_DataAnalytics.git
 
 git push -u origin main
+
+
+
+
+
+
+survival_count.png
+gender_distribution.png
+passenger_class.png
+age_distribution.png
+fare_distribution.png
+age_vs_class.png
+correlation_heatmap.png
+survival_gender.png
+survival_class.png
