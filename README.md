@@ -55,3 +55,44 @@ Titanic-Dataset.csv
 pip install -r requirements.txt
 python eda.py
 ```
+
+
+
+# CodeAlpha - Data Visualization
+
+## Objective
+
+Create meaningful visualizations using the Titanic Dataset.
+
+## Tools Used
+
+- Python
+- Pandas
+- Matplotlib
+- Seaborn
+
+## Visualizations
+
+- Survival Count
+- Gender Distribution
+- Passenger Class Distribution
+- Age Distribution
+- Fare Distribution
+- Survival by Gender
+- Survival by Passenger Class
+- Gender Pie Chart
+- Age vs Fare Scatter Plot
+- Fare Box Plot
+- Correlation Heatmap
+- Average Age Line Chart
+
+## How to Run
+
+```bash
+pip install -r requirements.txt
+python visualization.py
+```
+
+## Output
+
+The program generates and saves 12 chart images in PNG format.
