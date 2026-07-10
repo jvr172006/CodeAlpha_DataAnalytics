@@ -1,0 +1,45 @@
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+base_url = "https://books.toscrape.com/catalogue/page-{}.html"
+
+books = []
+
+for page in range(1, 6):
+    url = base_url.format(page)
+
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        print("Failed to fetch page", page)
+        continue
+
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    articles = soup.find_all("article", class_="product_pod")
+
+    for article in articles:
+        title = article.h3.a["title"]
+
+        price = article.find("p", class_="price_color").text
+
+        availability = article.find("p", class_="instock availability").text.strip()
+
+        rating = article.p["class"][1]
+
+        books.append({
+            "Title": title,
+            "Price": price,
+            "Availability": availability,
+            "Rating": rating
+        })
+
+df = pd.DataFrame(books)
+
+df.to_csv("scraped_books.csv", index=False)
+
+print(df.head())
+
+print("\nTotal Books:", len(df))
+print("CSV File Saved Successfully!")
