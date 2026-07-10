@@ -5,3 +5,9 @@ pandas
 numpy
 matplotlib
 seaborn
+pandas
+matplotlib
+seaborn
+nltk
+textblob
+wordcloud
