@@ -1,0 +1,154 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from nltk.sentiment import SentimentIntensityAnalyzer
+from wordcloud import WordCloud
+
+import nltk
+nltk.download('vader_lexicon')
+
+# -----------------------------
+# Load Dataset
+# -----------------------------
+df = pd.read_csv("Reviews.csv")
+
+print("="*60)
+print("FIRST FIVE RECORDS")
+print("="*60)
+
+print(df.head())
+
+print("\nDataset Shape")
+print(df.shape)
+
+print("\nColumns")
+print(df.columns)
+
+# -----------------------------
+# Detect Review Column
+# -----------------------------
+
+possible_columns = [
+    "Text",
+    "Review",
+    "review",
+    "reviews",
+    "Summary",
+    "Content"
+]
+
+review_column = None
+
+for col in possible_columns:
+    if col in df.columns:
+        review_column = col
+        break
+
+if review_column is None:
+    review_column = df.columns[-1]
+
+print("\nUsing Review Column :", review_column)
+
+# -----------------------------
+# Remove Missing Reviews
+# -----------------------------
+
+df = df.dropna(subset=[review_column])
+
+# -----------------------------
+# Sentiment Analysis
+# -----------------------------
+
+sia = SentimentIntensityAnalyzer()
+
+def get_sentiment(text):
+
+    score = sia.polarity_scores(str(text))
+
+    compound = score["compound"]
+
+    if compound >= 0.05:
+        return "Positive"
+
+    elif compound <= -0.05:
+        return "Negative"
+
+    else:
+        return "Neutral"
+
+df["Sentiment"] = df[review_column].apply(get_sentiment)
+
+print("\nSentiment Counts")
+
+print(df["Sentiment"].value_counts())
+
+# -----------------------------
+# Save Output
+# -----------------------------
+
+df.to_csv("Sentiment_Output.csv", index=False)
+
+print("\nOutput Saved Successfully!")
+
+# -----------------------------
+# Bar Chart
+# -----------------------------
+
+plt.figure(figsize=(6,5))
+
+sns.countplot(x="Sentiment", data=df)
+
+plt.title("Sentiment Distribution")
+
+plt.savefig("Sentiment_BarChart.png")
+
+plt.show()
+
+# -----------------------------
+# Pie Chart
+# -----------------------------
+
+plt.figure(figsize=(6,6))
+
+df["Sentiment"].value_counts().plot(
+    kind="pie",
+    autopct="%1.1f%%",
+    startangle=90
+)
+
+plt.ylabel("")
+
+plt.title("Sentiment Percentage")
+
+plt.savefig("Sentiment_PieChart.png")
+
+plt.show()
+
+# -----------------------------
+# Word Cloud
+# -----------------------------
+
+text = " ".join(df[review_column].astype(str))
+
+wordcloud = WordCloud(
+    width=1000,
+    height=500,
+    background_color="white"
+).generate(text)
+
+plt.figure(figsize=(12,6))
+
+plt.imshow(wordcloud)
+
+plt.axis("off")
+
+plt.title("Word Cloud")
+
+plt.savefig("WordCloud.png")
+
+plt.show()
+
+print("="*60)
+print("SENTIMENT ANALYSIS COMPLETED")
+print("="*60)
